@@ -38,10 +38,10 @@ class FilemanagerLaravelServiceProvider extends ServiceProvider {
 		});
 		$this->publishes([
             __DIR__ . '/../../controllers' => base_path('app/Http/Controllers'),
-            __DIR__ . '/../../views' => base_path('resources/views/vendor/filemanager-laravel'),            
-            __DIR__ . '/../../../public' => base_path('public'),            
+            __DIR__ . '/../../views' => base_path('resources/views/vendor/timenz/filemanager-laravel'),
+            __DIR__ . '/../../../public' => base_path('public/vendor/timenz/filemanager-laravel'),
         ]);
-        $this->loadViewsFrom(__DIR__ . 'resources/views', 'filemanager-laravel');
+        $this->loadViewsFrom(realpath(__DIR__.'/resources/views'), 'filemanager-laravel');
 	}
 
 	/**

@@ -3,15 +3,15 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>File Manager</title>
-<link rel="stylesheet" type="text/css" href="styles/reset.css" />
-<link rel="stylesheet" type="text/css" href="scripts/jquery.filetree/jqueryFileTree.css" />
-<link rel="stylesheet" type="text/css" href="scripts/jquery.contextmenu/jquery.contextMenu-1.01.css" />
-<link rel="stylesheet" type="text/css" href="styles/filemanager.css" />
+<link rel="stylesheet" type="text/css" href="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/styles/reset.css" />
+<link rel="stylesheet" type="text/css" href="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/scripts/jquery.filetree/jqueryFileTree.css" />
+<link rel="stylesheet" type="text/css" href="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/scripts/jquery.contextmenu/jquery.contextMenu-1.01.css" />
+<link rel="stylesheet" type="text/css" href="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/styles/filemanager.css" />
 <!--[if IE 9]>
-<link rel="stylesheet" type="text/css" href="styles/ie9.css" />
+<link rel="stylesheet" type="text/css" href="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/styles/ie9.css" />
 <![endif]-->
 <!--[if lte IE 8]>
-<link rel="stylesheet" type="text/css" href="styles/ie8.css" />
+<link rel="stylesheet" type="text/css" href="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/styles/ie8.css" />
 <![endif]-->
 </head>
 <body>
@@ -57,14 +57,17 @@
 	<li class="delete separator"><a href="#delete"></a></li>
 </ul>
 
-<script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="scripts/jquery.form-3.24.js"></script>
-<script type="text/javascript" src="scripts/jquery.splitter/jquery.splitter-1.5.1.js"></script>
-<script type="text/javascript" src="scripts/jquery.filetree/jqueryFileTree.js"></script>
-<script type="text/javascript" src="scripts/jquery.contextmenu/jquery.contextMenu-1.01.js"></script>
-<script type="text/javascript" src="scripts/jquery.impromptu-3.2.min.js"></script>
-<script type="text/javascript" src="scripts/jquery.tablesorter-2.7.2.min.js"></script>
-<script type="text/javascript" src="scripts/filemanager.js"></script>
+<script>var fmUrl = '{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}';</script>
+<script>var fmPath = '/vendor/timenz/filemanager-laravel/filemanager';</script>
+
+<script type="text/javascript" src="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/scripts/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/scripts/jquery.form-3.24.js"></script>
+<script type="text/javascript" src="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/scripts/jquery.splitter/jquery.splitter-1.5.1.js"></script>
+<script type="text/javascript" src="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/scripts/jquery.filetree/jqueryFileTree.js"></script>
+<script type="text/javascript" src="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/scripts/jquery.contextmenu/jquery.contextMenu-1.01.js"></script>
+<script type="text/javascript" src="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/scripts/jquery.impromptu-3.2.min.js"></script>
+<script type="text/javascript" src="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/scripts/jquery.tablesorter-2.7.2.min.js"></script>
+<script type="text/javascript" src="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/scripts/filemanager.js"></script>
 </div>
 </body>
 </html>

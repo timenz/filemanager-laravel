@@ -14,7 +14,7 @@ Basado de https://github.com/simogeo/Filemanager
 Edita tu `composer.json`.
 
 	"require": {
-		"pqb/filemanager-laravel": "2.*"
+		"timenz/filemanager-laravel": "dev-l5.1"
 	}
 
 Ejecuta

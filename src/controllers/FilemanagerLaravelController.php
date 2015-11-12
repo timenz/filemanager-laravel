@@ -12,7 +12,7 @@ class FilemanagerLaravelController extends Controller {
 	}
 	public function getShow()
 	{
-		return view('filemanager-laravel::filemanager.index');
+		return view('vendor.timenz/filemanager-laravel.filemanager.index');
 	}
 	public function getConnectors()
 	{

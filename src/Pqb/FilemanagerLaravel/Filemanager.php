@@ -21,7 +21,7 @@ class Filemanager
 	protected $thumbnail_height = 64;
 	protected $separator = 'userfiles'; // @todo fix keep it or not?
 	public $connector_url='/filemanager/connectors'; // Url where prosecute all operations
-	public $dir_filemanager=''; // filemanager plugin folder relating to domain example: /tinymce/plugins
+	public $dir_filemanager='/vendor/timenz/filemanager-laravel'; // filemanager plugin folder relating to domain example: /tinymce/plugins
 	private $dir_separate_real = '/filemanager';
 	public function __construct($extraConfig = '') {	
 		if(!empty($extraConfig) && is_array($extraConfig) && array_key_exists('dir_filemanager', $extraConfig)) {
@@ -168,7 +168,7 @@ class Filemanager
 		$current_path = $this->getFullPath();
 		$this->__log(__METHOD__ . ' - getFullPath '. $current_path);
 		if(!$this->isValidPath($current_path)) {
-			$this->error("No way.");
+			$this->error("No way. no valid path");
 		}
 		if(!is_dir($current_path)) {
 			$this->error(sprintf($this->lang('DIRECTORY_NOT_EXIST'),$this->get['path']));
@@ -231,7 +231,7 @@ class Filemanager
 	public function editfile() {
 		$current_path = $this->getFullPath();
 		if(!$this->has_permission('edit') || !$this->isValidPath($current_path) || !$this->isEditable($current_path)) {
-			$this->error("No way.");
+			$this->error("No way. no has permission edit 1");
 		}
 		$this->__log(__METHOD__ . ' - editing file '. $current_path);
 		$content = file_get_contents($current_path);
@@ -250,7 +250,7 @@ class Filemanager
 	public function savefile() {
 		$current_path = $this->getFullPath($this->post['path']);
 		if(!$this->has_permission('edit') || !$this->isValidPath($current_path) || !$this->isEditable($current_path)) {
-			$this->error("No way.");
+			$this->error("No way. no has permission edit 2");
 		}
 		if(!is_writable($current_path)) {
 			$this->error(sprintf($this->lang('ERROR_WRITING_PERM')));
@@ -280,7 +280,7 @@ class Filemanager
 		$new_file = $this->getFullPath($path . '/' . $this->get['new']). $suffix;
 		$old_file = $this->getFullPath($this->get['old']) . $suffix;
 		if(!$this->has_permission('rename') || !$this->isValidPath($old_file)) {
-			$this->error("No way.");
+			$this->error("No way. no has permission rename");
 		}
 		// For file only - we check if the new given extension is allowed regarding the security Policy settings
 		if(is_file($old_file) && $this->config['security']['allowChangeExtensions'] && !$this->isAllowedFileType($new_file)) {
@@ -338,7 +338,7 @@ class Filemanager
 			$this->error(sprintf($this->lang('INVALID_DIRECTORY_OR_FILE'),$this->get['new']));
 		}
 		if(!$this->has_permission('move') || !$this->isValidPath($oldPath)) {
-			$this->error("No way.");
+			$this->error("No way. no permission move");
 		}
 		$newRelativePath = $newPath;
 		$newPath = $this->getFullPath($newPath);
@@ -379,7 +379,7 @@ class Filemanager
 		$current_path = $this->getFullPath();
 		$thumbnail_path = $this->get_thumbnail_path($current_path);
 		if(!$this->has_permission('delete') || !$this->isValidPath($current_path)) {
-			$this->error("No way.");
+			$this->error("No way. no permission delete");
 		}
 		if(is_dir($current_path)) {
 			$this->unlinkRecursive($current_path);
@@ -450,7 +450,7 @@ class Filemanager
 		}
 		$current_path = $this->getFullPath($this->post['newfilepath']);
 		if(!$this->has_permission('replace') || !$this->isValidPath($current_path)) {
-			$this->error("No way.");
+			$this->error("No way. no permission replace");
 		}
 		move_uploaded_file($_FILES['fileR']['tmp_name'], $current_path);
 		// we delete thumbnail if file is image and thumbnail already
@@ -515,7 +515,7 @@ class Filemanager
 		$_FILES['newfile']['name'] = $this->cleanString($_FILES['newfile']['name'],array('.','-'));
 		$current_path = $this->getFullPath($this->post['currentpath']);
 		if(!$this->isValidPath($current_path)) {
-			$this->error("No way.");
+			$this->error("No way. no valid path 2");
 		}
 		if(!$this->config['upload']['overwrite']) {
 			$_FILES['newfile']['name'] = $this->checkFilename($current_path,$_FILES['newfile']['name']);
@@ -547,7 +547,7 @@ class Filemanager
 	public function addfolder() {
 		$current_path = $this->getFullPath();
 		if(!$this->isValidPath($current_path)) {
-			$this->error("No way.");
+			$this->error("No way. no valid path 3");
 		}
 		if(is_dir($current_path . $this->get['name'])) {
 			$this->error(sprintf($this->lang('DIRECTORY_ALREADY_EXISTS'),$this->get['name']));
@@ -568,7 +568,7 @@ class Filemanager
 	public function download() {
 		$current_path = $this->getFullPath();
 		if(!$this->has_permission('download') || !$this->isValidPath($current_path)) {
-			$this->error("No way.");
+			$this->error("No way. no permission download");
 		}
 		// we check if extension is allowed regarding the security Policy settings
 		if(!$this->isAllowedFileType(basename($current_path))) {
@@ -1035,13 +1035,13 @@ public function run()
 				break;
 				case 'getinfo':
 				if($this->getvar('path')) {
-					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way. no valid path 4");
 					$response = $this->getinfo();
 				}
 				break;
 				case 'getfolder':
 				if($this->getvar('path')) {
-					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way. no valid path 5".$current_path);
 					$response = $this->getfolder();
 				}
 				break;
@@ -1058,31 +1058,31 @@ public function run()
 				break;
 				case 'editfile':
 				if($this->getvar('path')) {
-					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way. no valid path 6");
 					$response = $this->editfile();
 				}
 				break;
 				case 'delete':
 				if($this->getvar('path')) {
-					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way. no valid path 7");
 					$response = $this->delete();
 				}
 				break;
 				case 'addfolder':
 				if($this->getvar('path') && $this->getvar('name')) {
-					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way. no valid path 8");
 					$response = $this->addfolder();
 				}
 				break;
 				case 'download':
 				if($this->getvar('path')) {
-					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way. no valid path 9");
 					$this->download();
 				}
 				break;
 				case 'preview':
 				if($this->getvar('path')) {
-					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way. no valid path 10");
 					if(isset($_GET['thumbnail'])) {
 						$thumbnail = true;
 					} else {
