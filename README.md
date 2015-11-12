@@ -14,7 +14,7 @@ Basado de https://github.com/simogeo/Filemanager
 Edita tu `composer.json`.
 
 	"require": {
-		"pqb/filemanager-laravel": "2.*"
+		"timenz/filemanager-laravel": "dev-l5.1"
 	}
 
 Ejecuta
@@ -58,7 +58,11 @@ Ejemplo http://localhost/admin/filemanager/
 Modifica tu routes.php
 ```
 Route::group(array('middleware' => 'auth'), function(){
-    Route::controller('admin/filemanager', 'FilemanagerLaravelController');
+//    Route::controller('admin/filemanager', 'FilemanagerLaravelController'); deprecated
+    Route::get('filemanager/show', ['uses' => 'FilemanagerLaravelController@getShow']);
+    Route::get('filemanager/connectors', ['uses' => 'FilemanagerLaravelController@getConnectors']);
+    Route::post('filemanager/connectors', ['uses' => 'FilemanagerLaravelController@postConnectors']);
+
 });
 ```
 Modifica tu controller

@@ -30,9 +30,9 @@ var loadConfigFile = function (type) {
 	type = (typeof type === "undefined") ? "user" : type;
 	
 	if(type == 'user') {
-		var url = './scripts/filemanager.config.js';
+		var url = fmUrl + '/scripts/filemanager.config.js';
 	} else {
-		var url = './scripts/filemanager.config.js.default'
+		var url = fmUrl + '/scripts/filemanager.config.js.default'
 	}
     
     $.ajax({
@@ -97,11 +97,11 @@ var capabilities = config.options.capabilities || new Array('select', 'download'
 
 // Get localized messages from file 
 // through culture var or from URL
-if($.urlParam('langCode') != 0 && file_exists ('scripts/languages/'  + $.urlParam('langCode') + '.js')) config.options.culture = $.urlParam('langCode');
+if($.urlParam('langCode') != 0 && file_exists (fmUrl + '/scripts/languages/'  + $.urlParam('langCode') + '.js')) config.options.culture = $.urlParam('langCode');
 
 var lg = [];
 $.ajax({
-  url: 'scripts/languages/'  + config.options.culture + '.js',
+  url: fmUrl + '/scripts/languages/'  + config.options.culture + '.js',
   async: false,
   dataType: 'json',
   success: function (json) {
@@ -1261,7 +1261,7 @@ var getFolderInfo = function(path) {
 	setUploader(path);
 
 	// Display an activity indicator.
-	$('#fileinfo').html('<img id="activity" src="images/wait30trans.gif" width="30" height="30" />');
+	$('#fileinfo').html('<img id="activity" src="' + fmUrl + '/images/wait30trans.gif" width="30" height="30" />');
 
 	// Retrieve the data and generate the markup.
 	var d = new Date(); // to prevent IE cache issues
@@ -1462,15 +1462,15 @@ $(function(){
 	
 	// Loading CodeMirror if enabled for online edition
 	if(config.edit.enabled) {
-		loadCSS('./scripts/CodeMirror/lib/codemirror.css');
-		loadCSS('./scripts/CodeMirror/theme/' + config.edit.theme + '.css');
-		loadJS('./scripts/CodeMirror/lib/codemirror.js');
-		loadJS('./scripts/CodeMirror/addon/selection/active-line.js');
-		loadJS('./scripts/CodeMirror/dynamic-mode.js');
+		loadCSS(fmUrl + '/scripts/CodeMirror/lib/codemirror.css');
+		loadCSS(fmUrl + '/scripts/CodeMirror/theme/' + config.edit.theme + '.css');
+		loadJS(fmUrl + '/scripts/CodeMirror/lib/codemirror.js');
+		loadJS(fmUrl + '/scripts/CodeMirror/addon/selection/active-line.js');
+		loadJS(fmUrl + '/scripts/CodeMirror/dynamic-mode.js');
 	}
 
 	if(!config.options.fileRoot) {
-		fileRoot = '/' + document.location.pathname.substring(1, document.location.pathname.lastIndexOf('/') + 1) + 'userfiles/';
+		fileRoot = fmPath + '/userfiles/';
 	} else {
 		if(!config.options.serverRoot) {
 			fileRoot = config.options.fileRoot;
@@ -1535,7 +1535,7 @@ $(function(){
 	
 	/** load searchbox */
 	if(config.options.searchBox === true)  {
-		loadJS("./scripts/filemanager.liveSearch.min.js");
+		loadJS(fmUrl + "/scripts/filemanager.liveSearch.min.js");
 	} else {
 		$('#search').remove();
 	}
