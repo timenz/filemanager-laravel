@@ -1041,7 +1041,7 @@ public function run()
 				break;
 				case 'getfolder':
 				if($this->getvar('path')) {
-					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way. no valid path 5".$current_path);
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way. no valid path 5");
 					$response = $this->getfolder();
 				}
 				break;

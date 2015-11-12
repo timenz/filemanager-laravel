@@ -58,7 +58,11 @@ Ejemplo http://localhost/admin/filemanager/
 Modifica tu routes.php
 ```
 Route::group(array('middleware' => 'auth'), function(){
-    Route::controller('admin/filemanager', 'FilemanagerLaravelController');
+//    Route::controller('admin/filemanager', 'FilemanagerLaravelController'); deprecated
+    Route::get('filemanager/show', ['uses' => 'FilemanagerLaravelController@getShow']);
+    Route::get('filemanager/connectors', ['uses' => 'FilemanagerLaravelController@getConnectors']);
+    Route::post('filemanager/connectors', ['uses' => 'FilemanagerLaravelController@postConnectors']);
+
 });
 ```
 Modifica tu controller
