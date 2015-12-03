@@ -30,16 +30,16 @@ var loadConfigFile = function (type) {
 	type = (typeof type === "undefined") ? "user" : type;
 	
 	if(type == 'user') {
-		var url = fmUrl + '/scripts/filemanager.config.js';
+		var url = fmUrl + '/scripts/filemanager.config.json';
 	} else {
 		var url = fmUrl + '/scripts/filemanager.config.js.default'
 	}
-    
+
     $.ajax({
         'async': false,
         'url': url,
         'dataType': "json",
-        cache: false, 
+        cache: false,
         'success': function (data) {
             json = data;
         }

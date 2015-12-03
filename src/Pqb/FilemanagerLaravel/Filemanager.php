@@ -34,7 +34,7 @@ class Filemanager
 		$content = file_get_contents(public_path().$this->dir_separate_real."/scripts/filemanager.config.js.default");
 		$config_default = json_decode($content, true);
 		// getting user config file
-		$content = file_get_contents(public_path().$this->dir_separate_real."/scripts/filemanager.config.js");
+		$content = file_get_contents(public_path().$this->dir_separate_real."/scripts/filemanager.config.json");
 		$config = json_decode($content, true);
 		$this->config = array_replace_recursive ($config_default, $config);
 		// override config options if needed
