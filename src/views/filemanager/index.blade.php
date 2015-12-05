@@ -58,7 +58,7 @@
 </ul>
 
 <script>var fmUrl = '{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}';</script>
-<script>var fmPath = '/vendor/timenz/filemanager-laravel/filemanager';</script>
+<script>var fmPath = '/uploads';</script>
 
 <script type="text/javascript" src="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="{{ asset('vendor/timenz/filemanager-laravel/filemanager') }}/scripts/jquery.form-3.24.js"></script>
